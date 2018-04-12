@@ -1,8 +1,8 @@
 /**
  * @author Ricardo E. Riveros
  *
- * This example will focus on Kotlin standard functions
- * also, apply, let and run
+ * This example will focus on Kotlin standard extension functions
+ * also, apply, let, run and to
  */
 package com.sairic.example.kotlinstandardfunctions
 
@@ -36,7 +36,22 @@ class KotlinStandardFunctionsTest {
     fun testRunScopeWithFunction() {
         run {
             Bimmer(2016, "M4", 425, 66000.00, true)
-        }.displayAccelerationStatus()
+        }.showStatus()
+    }
+
+    @Test
+    @DisplayName("Show that 'this' is implied inside the 'run' extension function")
+    fun testRunShowThis() {
+        val bimmer = Bimmer(2017, "M3", 444, 64000.00)
+
+        bimmer.run {
+            assert(model == "M3")
+        }
+
+        bimmer.run {
+            assert(this.model == "M3")
+        }
+
 
     }
 
